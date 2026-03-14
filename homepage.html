@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hideout · four cards</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f17;  /* deep dark base */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .homepage {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(18, 25, 40, 0.7);   /* dark glass */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 4rem 4rem 3rem 3rem;
+            box-shadow: 0 30px 50px -20px #03050a, 
+                        0 0 0 1px rgba(120, 150, 220, 0.15) inset;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* header – with hideout vibe */
+        .home-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .home-header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #cdd9ff, #9bb2e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 12px rgba(90, 150, 255, 0.3);
+        }
+
+        .home-header p {
+            font-size: 1.2rem;
+            color: #a3b7d4;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            opacity: 0.9;
+            letter-spacing: 0.3px;
+        }
+
+        /* 4‑card grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        /* card styles — dark, with rich accents */
+        .card {
+            background: rgba(12, 20, 30, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 2.5rem;
+            padding: 2.2rem 1.8rem 2rem 1.8rem;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.8), 
+                        0 0 0 1px rgba(210, 225, 255, 0.08) inset;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 45px -16px #000000, 
+                        0 0 0 1px rgba(140, 190, 255, 0.25) inset;
+            background: rgba(20, 30, 45, 0.85);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* icon area — dim but glowing */
+        .card-icon {
+            font-size: 3rem;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 14px -6px #000000, inset 0 0 0 1px rgba(255,255,255,0.1);
+            color: #c7d9ff;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card:hover .card-icon {
+            background: rgba(20, 30, 50, 0.9);
+            box-shadow: 0 0 18px rgba(100, 160, 255, 0.3);
+        }
+
+        /* unique icon glints per card */
+        .card:nth-child(1) .card-icon { color: #f9b84a; }  /* games gold */
+        .card:nth-child(2) .card-icon { color: #6fc2f0; }  /* AI sky */
+        .card:nth-child(3) .card-icon { color: #c79bff; }  /* extras violet */
+        .card:nth-child(4) .card-icon { color: #68d6a3; }  /* partners mint */
+
+        .card h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: #ecf2ff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #b2c6e0;
+            margin-bottom: 2rem;
+            flex: 1;
+            opacity: 0.9;
+        }
+
+        .card-button {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.5rem;
+            background: rgba(25, 40, 60, 0.7);
+            border-radius: 3rem;
+            font-weight: 500;
+            color: #d2e0ff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: background 0.2s, gap 0.2s, border-color 0.2s;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+            align-self: flex-start;
+            box-shadow: 0 4px 10px -4px #010101;
+        }
+
+        .card-button i {
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+            color: #adc4ff;
+        }
+
+        .card-button:hover {
+            background: rgba(45, 70, 105, 0.9);
+            gap: 1rem;
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .card-button:hover i {
+            transform: translateX(4px);
+            color: white;
+        }
+
+        /* partners button subtle variation */
+        .card:last-child .card-button {
+            background: rgba(30, 60, 50, 0.5);
+            color: #b3e6cc;
+        }
+        .card:last-child .card-button:hover {
+            background: rgba(35, 85, 70, 0.9);
+        }
+
+        /* responsive: tablet & mobile */
+        @media (max-width: 1000px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.8rem;
+            }
+            .homepage { padding: 2rem 1.8rem; }
+            .home-header h1 { font-size: 2.6rem; }
+        }
+
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .home-header h1 { font-size: 2.2rem; }
+            .card h2 { font-size: 2rem; }
+        }
+
+        /* footer with hideout signature */
+        .home-footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7c8fb0;
+            border-top: 1px dashed rgba(120, 160, 220, 0.2);
+            padding-top: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+        .home-footer span { 
+            font-weight: 500; 
+            color: #9fb3da;
+            opacity: 0.9;
+        }
+        .home-footer i {
+            font-size: 0.7rem;
+            color: #5f7faf;
+            margin: 0 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="homepage">
+        <!-- header – THE HIDEOUT -->
+        <div class="home-header">
+            <h1>⚇ THE HIDEOUT</h1>
+            <p>four doors — games, AI, extras, partners</p>
+        </div>
+
+        <!-- 4 cards grid -->
+        <div class="card-grid">
+            
+            <!-- GAMES CARD -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                <h2>games</h2>
+                <p>retro, indie, puzzles & adventures. challenge friends or dive into solo quests. new releases every week.</p>
+                <a href="games.html" class="card-button" aria-label="games section">
+                    <span>enter arcade</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- EXTRAS CARD -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-puzzle-piece"></i></div>
+                <h2>extras</h2>
+                <p>goodies, resources, wallpapers, easter eggs and mini-tools. the little things that make a difference.</p>
+                <a href="#" class="card-button" aria-label="extra content">
+                    <span>browse extras</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- PARTNERS CARD -->
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                <h2>partners</h2>
+                <p>collaborations, affiliates, and co-creators. join the network or meet the people behind the projects.</p>
+                <a href="#" class="card-button" aria-label="partner info">
+                    <span>connect</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- footer with the hideout signature -->
+        <div class="home-footer">
+            <span> <i class="fas fa-moon"></i> the hideout · games · ai · extras · partners <i class="fas fa-moon"></i> </span>
+        </div>
+    </div>
+
+    <!-- all links are # placeholders – replace with actual URLs -->
+</body>
+</html>
